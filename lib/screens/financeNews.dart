@@ -9,8 +9,13 @@ class _FinanceNewsState extends State<FinanceNews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Text("Finance News"),
+      body: Center(
+        child: Container(
+          child: Text(
+            "Finance News",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
       ),
     );
   }

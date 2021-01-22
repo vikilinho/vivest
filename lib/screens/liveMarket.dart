@@ -9,8 +9,13 @@ class _LiveMarketState extends State<LiveMarket> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Text("Live Market Upadate "),
+      body: Center(
+        child: Container(
+          child: Text(
+            "Live Market Upadate ",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
       ),
     );
   }

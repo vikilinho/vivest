@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:investo/screens/homeScreen.dart';
+import 'package:investo/screens/navigationScreen.dart';
 import 'package:investo/screens/onboarding.dart';
 import 'package:investo/screens/splashScreen.dart';
 
@@ -13,13 +14,20 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        scaffoldBackgroundColor: Color(0xff1F2428),
         primarySwatch: Colors.blue,
+        primaryColorDark: Color(0xff1F2428),
+        primaryColorLight: Color(0xffFFFFFF),
+        textTheme: TextTheme(
+          bodyText1: TextStyle(color: Colors.white),
+        ),
       ),
-      initialRoute:"homeScreen",
+      initialRoute: "NavigationScreen",
       routes: {
         "splashScreen": (ctx) => SplashScreen(),
         "homeScreen": (ctx) => HomeScreen(),
-        "onboarding": (ctx) => OnboardScreen()
+        "onboarding": (ctx) => OnboardScreen(),
+        "NavigationScreen": (ctx) => NavigationScreen(),
       },
     );
   }

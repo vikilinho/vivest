@@ -9,7 +9,14 @@ class _InterestPageState extends State<InterestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(child: Text("interest Page")),
+      body: Center(
+        child: Container(
+          child: Text(
+            "interest Page",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      ),
     );
   }
 }
