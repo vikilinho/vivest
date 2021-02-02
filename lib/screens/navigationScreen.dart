@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:investo/screens/financeNews.dart';
 import 'package:investo/screens/homeScreen.dart';
-import 'package:investo/screens/interestPage.dart';
+import 'package:investo/screens/InterestTab1.dart';
 import 'package:investo/screens/liveMarket.dart';
 
 class NavigationScreen extends StatefulWidget {
@@ -24,7 +24,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
           index: _currentIndex,
           children: [
             HomeScreen(),
-            InterestPage(),
+            InterestPageTab(),
             FinanceNews(),
             LiveMarket(),
           ],
