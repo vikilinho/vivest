@@ -99,13 +99,21 @@ class _SimpleInterestState extends State<SimpleInterest> {
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: DropdownButtonFormField(
                   decoration: InputDecoration(
-                      fillColor: Color.fromRGBO(245, 247, 251, 1),
-                      filled: true,
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Color.fromRGBO(245, 247, 251, 1)))),
-                  focusColor: Color.fromRGBO(245, 247, 251, 1),
-                  hint: Text('Year'),
+                    fillColor: Colors.teal,
+                    filled: true,
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.teal,
+                      ),
+                    ),
+                  ),
+                  focusColor: Colors.teal,
+                  hint: Text(
+                    'Year',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
                   items: <String>[
                     ' Years',
                     ' Months',

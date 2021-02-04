@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:investo/screens/homeScreen.dart';
 import 'package:investo/screens/navigationScreen.dart';
@@ -14,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        brightness: Brightness.dark,
         scaffoldBackgroundColor: Color(0xff1F2428),
         primarySwatch: Colors.teal,
         primaryColorDark: Color(0xff1F2428),
