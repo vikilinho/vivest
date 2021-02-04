@@ -85,7 +85,10 @@ class _SimpleInterestState extends State<SimpleInterest> {
                         size: 16.0,
                         color: Colors.white,
                       ),
-                      labelText: "Interest Rate:",
+                      labelText: "Interest Rate Per:",
+                      suffixText: "$dropdownValue",
+                      suffixStyle: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
                       labelStyle: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
@@ -139,7 +142,7 @@ class _SimpleInterestState extends State<SimpleInterest> {
                         size: 16.0,
                         color: Colors.white,
                       ),
-                      labelText: 'How many $dropdownValue:',
+                      labelText: 'Number of $dropdownValue:',
                       labelStyle: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
