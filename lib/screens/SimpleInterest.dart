@@ -11,30 +11,161 @@ class SimpleInterest extends StatefulWidget {
 }
 
 class _SimpleInterestState extends State<SimpleInterest> {
+  String dropdownValue = 'Year ';
   int initialBalance = 20;
+  int initialRate =10;
+  int time = 2;
+  final myController = TextEditingController();
+  final myController2 = TextEditingController();
+  void dispose() {
+    // Clean up the controller when the widget is removed from the
+    // widget tree.
+    myController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Container(
-          decoration: BoxDecoration(color: Colors.blue),
-          child: TextField(
-            style: TextStyle(color: Colors.white),
-            decoration: InputDecoration(
-              prefixIcon: Icon(
-                FontAwesomeIcons.dollarSign,
-                size: 16.0,
-                color: Colors.white,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Container(
+                  decoration: BoxDecoration(
+                    // color: Colors.blue,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: TextField(
+                    controller: myController,
+                    style: TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                        color: Color.fromRGBO(245, 247, 251, 1),
+                      )),
+                      prefixIcon: Icon(
+                        FontAwesomeIcons.dollarSign,
+                        size: 16.0,
+                        color: Colors.white,
+                      ),
+                      labelText: "Amount:",
+                      labelStyle: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
               ),
-              labelText: "Initial Deposit:",
-              labelStyle:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              focusColor: Colors.white,
-            ),
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Container(
+                  decoration: BoxDecoration(
+                    // color: Colors.blue,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: TextField(
+                    controller: myController2,
+                    style: TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                        color: Color.fromRGBO(245, 247, 251, 1),
+                      )),
+                      prefixIcon: Icon(
+                        FontAwesomeIcons.percent,
+                        size: 16.0,
+                        color: Colors.white,
+                      ),
+                      labelText: "Interest Rate:",
+                      labelStyle: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 8, right: 8),
+                child: DropdownButtonFormField(
+                  decoration: InputDecoration(
+                      fillColor: Color.fromRGBO(245, 247, 251, 1),
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(245, 247, 251, 1)))),
+                  focusColor: Color.fromRGBO(245, 247, 251, 1),
+                  hint: Text('Year'),
+                  items: <String>[
+                    ' Years',
+                    ' Months',
+                  ].map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String newValue) {
+                    setState(() {
+                      dropdownValue = newValue;
+                    });
+                  },
+                ),
+              ),
+              SizedBox(height: 25),
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: Container(
+                  decoration: BoxDecoration(
+                    // color: Colors.blue,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: TextField(
+                    style: TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                        color: Color.fromRGBO(245, 247, 251, 1),
+                      )),
+                      prefixIcon: Icon(
+                        FontAwesomeIcons.percent,
+                        size: 16.0,
+                        color: Colors.white,
+                      ),
+                      labelText: 'How many $dropdownValue:',
+                      labelStyle: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 25),
+              ButtonTheme(
+                minWidth: 400,
+                height: 60,
+                child: RaisedButton(
+                  child: Text("Calculate Interest",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 20)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  color: Color.fromRGBO(28, 180, 174, 1),
+                  onPressed: () {},
+                ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
+  void IntrestCalculator(
+      //SI = Amount * Rate * T/100
+      //Total = Amount+SI
+
+      )
 }
