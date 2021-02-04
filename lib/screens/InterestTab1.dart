@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:investo/screens/compoundinterest.dart';
 import 'package:investo/screens/SimpleInterest.dart';
 
@@ -42,8 +43,9 @@ class _InterestPageTabState extends State<InterestPageTab>
         elevation: 0,
         backgroundColor: Colors.white,
         bottom: TabBar(
+          labelStyle: TextStyle(fontWeight: FontWeight.bold),
           unselectedLabelColor: Colors.grey,
-          labelColor: Colors.black,
+          labelColor: Colors.teal,
           labelPadding: EdgeInsets.all(8.0),
           indicatorColor: Colors.white,
           onTap: (index) => currentIndex = index,

@@ -13,7 +13,7 @@ class SimpleInterest extends StatefulWidget {
 class _SimpleInterestState extends State<SimpleInterest> {
   String dropdownValue = 'Year ';
   int initialBalance = 20;
-  int initialRate =10;
+  int initialRate = 10;
   int time = 2;
   final myController = TextEditingController();
   final myController2 = TextEditingController();
@@ -23,6 +23,12 @@ class _SimpleInterestState extends State<SimpleInterest> {
     myController.dispose();
     super.dispose();
   }
+
+  void IntrestCalculator(
+      //SI = Amount * Rate * T/100
+      //Total = Amount+SI
+
+      ) {}
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +93,7 @@ class _SimpleInterestState extends State<SimpleInterest> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 8, right: 8),
+                padding: const EdgeInsets.only(left: 20, right: 20),
                 child: DropdownButtonFormField(
                   decoration: InputDecoration(
                       fillColor: Color.fromRGBO(245, 247, 251, 1),
@@ -129,7 +135,7 @@ class _SimpleInterestState extends State<SimpleInterest> {
                         color: Color.fromRGBO(245, 247, 251, 1),
                       )),
                       prefixIcon: Icon(
-                        FontAwesomeIcons.percent,
+                        FontAwesomeIcons.clock,
                         size: 16.0,
                         color: Colors.white,
                       ),
@@ -141,20 +147,24 @@ class _SimpleInterestState extends State<SimpleInterest> {
                 ),
               ),
               SizedBox(height: 25),
-              ButtonTheme(
-                minWidth: 400,
-                height: 60,
-                child: RaisedButton(
-                  child: Text("Calculate Interest",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 20)),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: ButtonTheme(
+                  minWidth: 400,
+                  height: 60,
+                  child: RaisedButton(
+                    child: Text("Calculate Interest",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w800,
+                            fontSize: 20)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    color: Colors.teal,
+                    //Color.fromRGBO(28, 180, 174, 1),
+                    onPressed: () {},
                   ),
-                  color: Color.fromRGBO(28, 180, 174, 1),
-                  onPressed: () {},
                 ),
               ),
             ],
@@ -163,9 +173,4 @@ class _SimpleInterestState extends State<SimpleInterest> {
       ),
     );
   }
-  void IntrestCalculator(
-      //SI = Amount * Rate * T/100
-      //Total = Amount+SI
-
-      )
 }
