@@ -3,7 +3,8 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:investo/constants/container.dart';
+import 'package:investo/calculatorBox.dart';
+import 'package:investo/screens/resultScreen.dart';
 
 class SimpleInterest extends StatefulWidget {
   @override
@@ -12,23 +13,18 @@ class SimpleInterest extends StatefulWidget {
 
 class _SimpleInterestState extends State<SimpleInterest> {
   String dropdownValue = 'Year ';
-  int initialBalance = 20;
-  int initialRate = 10;
+  int amount = 20;
+  int rate = 10;
   int time = 2;
-  final myController = TextEditingController();
-  final myController2 = TextEditingController();
+  final contrAmount = TextEditingController();
+  final contrRate = TextEditingController();
+  final contrTime = TextEditingController();
   void dispose() {
     // Clean up the controller when the widget is removed from the
     // widget tree.
-    myController.dispose();
+    contrAmount.dispose();
     super.dispose();
   }
-
-  void IntrestCalculator(
-      //SI = Amount * Rate * T/100
-      //Total = Amount+SI
-
-      ) {}
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +42,7 @@ class _SimpleInterestState extends State<SimpleInterest> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextField(
-                    controller: myController,
+                    controller: contrAmount,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -73,7 +69,7 @@ class _SimpleInterestState extends State<SimpleInterest> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextField(
-                    controller: myController2,
+                    controller: contrRate,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -139,6 +135,7 @@ class _SimpleInterestState extends State<SimpleInterest> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextField(
+                    controller: contrTime,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -174,7 +171,18 @@ class _SimpleInterestState extends State<SimpleInterest> {
                     ),
                     color: Colors.teal,
                     //Color.fromRGBO(28, 180, 174, 1),
-                    onPressed: () {},
+                    onPressed: () {
+                      CalculatorBox calc =
+                          CalculatorBox(amount: amount, rate: rate, time: time);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ResultScreen(
+                                  simpleInterest: calc.calculateSI(),
+                                  total: calc.result(),
+                                )),
+                      );
+                    },
                   ),
                 ),
               ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:investo/screens/homeScreen.dart';
 import 'package:investo/screens/navigationScreen.dart';
 import 'package:investo/screens/onboarding.dart';
+import 'package:investo/screens/resultScreen.dart';
 import 'package:investo/screens/splashScreen.dart';
 
 void main() {
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "splashScreen",
       routes: {
         "splashScreen": (ctx) => SplashScreen(),
+        "ResultScreen": (ctx) => ResultScreen(),
         "homeScreen": (ctx) => HomeScreen(),
         "onboarding": (ctx) => OnboardScreen(),
         "NavigationScreen": (ctx) => NavigationScreen(),
