@@ -1,16 +1,21 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class SimpleInterest extends StatefulWidget {
+class CmpdInterest extends StatefulWidget {
   @override
-  _SimpleInterestState createState() => _SimpleInterestState();
+  _CmpdInterestState createState() => _CmpdInterestState();
 }
 
-class _SimpleInterestState extends State<SimpleInterest> {
+class _CmpdInterestState extends State<CmpdInterest> {
+  String compoundingValue = 'Annually';
   String dropdownValue = 'Year ';
+  int _value = 1;
+  var n = 1;
   int amount = 2000;
   int rate = 10;
   int time = 2;
@@ -171,13 +176,67 @@ class _SimpleInterestState extends State<SimpleInterest> {
                 ),
               ),
               SizedBox(height: 25),
+              Column(
+                children: [
+                  Text(
+                    "Compounding Frequency",
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 5),
+                  Container(
+                    padding: EdgeInsets.only(left: 20, right: 20),
+                    decoration: BoxDecoration(
+                        color: Colors.teal,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: DropdownButton(
+                      value: _value,
+                      items: [
+                        DropdownMenuItem(
+                          child: Text(
+                            "Annually",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          value: 1,
+                        ),
+                        DropdownMenuItem(
+                          child: Text(
+                            "Semi-annually",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          value: 2,
+                        ),
+                        DropdownMenuItem(
+                          child: Text(
+                            "Monthly",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          value: 12,
+                        ),
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          _value = value;
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 25),
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: ButtonTheme(
                   minWidth: 400,
                   height: 60,
                   child: RaisedButton(
-                    child: Text("Calculate Interest",
+                    child: Text("Compound Interest",
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w800,
@@ -189,14 +248,13 @@ class _SimpleInterestState extends State<SimpleInterest> {
                     //Color.fromRGBO(28, 180, 174, 1),
                     onPressed: () {
                       var amnt = double.parse(contrAmount.text);
-                      var tme = double.parse(contrTime.text);
+                      var tme = int.parse(contrTime.text);
                       var rt = double.parse(contrRate.text);
-                      print(amnt);
-                      print(tme);
-                      print(rt);
 
-                      var si = (amnt * tme * rt) / 100;
-                      var tt = si + amnt;
+                      var a = (1 + (rt / 100) / -_value);
+                      double b = amnt * pow(a, tme * _value);
+                      var c = b.toStringAsFixed(2);
+                      print(b);
 
                       return showDialog(
                         barrierDismissible: true,
@@ -208,9 +266,9 @@ class _SimpleInterestState extends State<SimpleInterest> {
                               backgroundColor: Colors.black87,
                               elevation: 0.0,
                               contentTextStyle: TextStyle(color: Colors.white),
-                              title: Text(r"Interest acrued is $" "$si."),
+                              title: Text("in $tme years ,"),
                               content: Text(
-                                r"Total amount is $" "$tt",
+                                r"You will have $" "$c",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 20),
                               ),

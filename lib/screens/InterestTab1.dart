@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:investo/screens/compoundinterest.dart';
+import 'package:investo/screens/cmpd.dart';
+
 import 'package:investo/screens/SimpleInterest.dart';
+import 'package:investo/screens/savingGoal.dart';
 
 class InterestPageTab extends StatefulWidget {
   @override
@@ -24,6 +26,9 @@ class _InterestPageTabState extends State<InterestPageTab>
     ),
     Tab(
       text: 'Compound Interest',
+    ),
+    Tab(
+      text: 'Saving Goal',
     ),
   ];
   void initState() {
@@ -55,7 +60,7 @@ class _InterestPageTabState extends State<InterestPageTab>
       ),
       body: TabBarView(
         controller: _controller,
-        children: [SimpleInterest(), CompoundInterest()],
+        children: [SimpleInterest(), CmpdInterest(), SavingGoal()],
       ),
     );
   }
