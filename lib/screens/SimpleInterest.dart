@@ -13,7 +13,7 @@ class SimpleInterest extends StatefulWidget {
 
 class _SimpleInterestState extends State<SimpleInterest> {
   String dropdownValue = 'Year ';
-  int amount = 20;
+  int amount = 2000;
   int rate = 10;
   int time = 2;
   final contrAmount = TextEditingController();
@@ -42,6 +42,12 @@ class _SimpleInterestState extends State<SimpleInterest> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextField(
+                    onChanged: (newvalue) {
+                      setState(() {
+                        newvalue = contrAmount.text;
+                        amount = newvalue as int;
+                      });
+                    },
                     controller: contrAmount,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
@@ -69,6 +75,12 @@ class _SimpleInterestState extends State<SimpleInterest> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextField(
+                    onChanged: (newvalue) {
+                      setState(() {
+                        newvalue = contrRate.text;
+                        rate = newvalue as int;
+                      });
+                    },
                     controller: contrRate,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
@@ -135,6 +147,12 @@ class _SimpleInterestState extends State<SimpleInterest> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextField(
+                    onChanged: (newvalue) {
+                      setState(() {
+                        newvalue = contrTime.text;
+                        time = newvalue as int;
+                      });
+                    },
                     controller: contrTime,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
@@ -172,16 +190,38 @@ class _SimpleInterestState extends State<SimpleInterest> {
                     color: Colors.teal,
                     //Color.fromRGBO(28, 180, 174, 1),
                     onPressed: () {
-                      CalculatorBox calc =
-                          CalculatorBox(amount: amount, rate: rate, time: time);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ResultScreen(
-                                  simpleInterest: calc.calculateSI(),
-                                  total: calc.result(),
-                                )),
+                      // CalculatorBox calc =
+                      //     CalculatorBox(amount: amount, rate: rate, time: time);
+                      // print(contrAmount.text);
+                      // print(contrRate.text);
+                      // print(contrTime.text);
+                      var amnt = double.parse(contrAmount.text);
+                      var tme = double.parse(contrTime.text);
+                      var rt = double.parse(contrRate.text);
+                      var si = (amnt * tme * rt) / 100;
+                      var tt = si + amnt;
+                      print(tt);
+                      return showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            elevation: 25.0,
+                            title: Text("Interest"),
+                            content: Text(
+                              'Interest accrued is $si and total is $tt',
+                              textAlign: TextAlign.center,
+                            ),
+                          );
+                        },
                       );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //       builder: (context) => ResultScreen(
+                      //             simpleInterest: calc.calculateSI(),
+                      //             total: calc.result(),
+                      //           )),
+                      // );
                     },
                   ),
                 ),
