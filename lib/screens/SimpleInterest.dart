@@ -189,13 +189,14 @@ class _SimpleInterestState extends State<SimpleInterest> {
                     //Color.fromRGBO(28, 180, 174, 1),
                     onPressed: () {
                       var amnt = double.parse(contrAmount.text);
-                      var tme = double.parse(contrTime.text);
+                      var tme = int.parse(contrTime.text);
                       var rt = double.parse(contrRate.text);
                       print(amnt);
                       print(tme);
                       print(rt);
 
                       var si = (amnt * tme * rt) / 100;
+
                       var tt = si + amnt;
 
                       return showDialog(
@@ -210,7 +211,8 @@ class _SimpleInterestState extends State<SimpleInterest> {
                               contentTextStyle: TextStyle(color: Colors.white),
                               title: Text(r"Interest acrued is $" "$si."),
                               content: Text(
-                                r"Total amount is $" "$tt",
+                                r"Total amount is $"
+                                "$tt  in $tme $dropdownValue ",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 20),
                               ),

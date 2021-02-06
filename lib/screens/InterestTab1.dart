@@ -46,11 +46,11 @@ class _InterestPageTabState extends State<InterestPageTab>
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.teal,
         bottom: TabBar(
           labelStyle: TextStyle(fontWeight: FontWeight.bold),
-          unselectedLabelColor: Colors.grey,
-          labelColor: Colors.teal,
+          unselectedLabelColor: Colors.black,
+          labelColor: Colors.white,
           labelPadding: EdgeInsets.all(8.0),
           indicatorColor: Colors.white,
           onTap: (index) => currentIndex = index,

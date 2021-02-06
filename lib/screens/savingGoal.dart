@@ -14,7 +14,7 @@ class SavingGoal extends StatefulWidget {
 class _SavingGoalState extends State<SavingGoal> {
   String compoundingValue = 'Annually';
   String dropdownValue = 'Year ';
-  int _value = 1;
+  int _value = 12;
 
   int amount = 2000;
   int rate = 10;
@@ -180,59 +180,6 @@ class _SavingGoalState extends State<SavingGoal> {
                 ),
               ),
               SizedBox(height: 5),
-              Column(
-                children: [
-                  Text(
-                    "Compounding Frequency",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 5),
-                  Container(
-                    padding: EdgeInsets.only(left: 20, right: 20),
-                    decoration: BoxDecoration(
-                        color: Colors.teal,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: DropdownButton(
-                      value: _value,
-                      items: [
-                        DropdownMenuItem(
-                          child: Text(
-                            "Annually",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          value: 1,
-                        ),
-                        DropdownMenuItem(
-                          child: Text(
-                            "Semi-annually",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          value: 2,
-                        ),
-                        DropdownMenuItem(
-                          child: Text(
-                            "Monthly",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          value: 12,
-                        ),
-                      ],
-                      onChanged: (value) {
-                        setState(() {
-                          _value = value;
-                        });
-                      },
-                    ),
-                  ),
-                ],
-              ),
               SizedBox(height: 25),
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
@@ -255,16 +202,18 @@ class _SavingGoalState extends State<SavingGoal> {
 
                       var tme = int.parse(contrTime.text);
                       var rt = double.parse(contrRate.text);
-                      var nrt = rt * 0.01;
-                      var top = target * ((nrt) / _value);
-                      print(top);
-                      var ftop = pow(nrt / _value, tme * _value);
-                      //my problem
-                      print(ftop);
-                      var bottom = 1 + ftop - 1;
-                      print(bottom);
-                      var saving = top / bottom;
-                      var monthlySaving = saving.toStringAsFixed(2);
+                      var nrt = (rt * 0.01) / 12;
+                      print(nrt);
+                      var topsolving =
+                          (nrt) * target * (1 + pow(nrt, tme * _value));
+                      print(topsolving);
+
+                      var btmsolving = 1 + pow(nrt, tme * _value);
+                      print(btmsolving);
+                      var monthlySaving = topsolving / btmsolving;
+                      var monthSave = monthlySaving.toStringAsFixed(2);
+
+                      print(monthlySaving);
 
                       return showDialog(
                         barrierDismissible: true,
@@ -280,7 +229,7 @@ class _SavingGoalState extends State<SavingGoal> {
                                   "$target,"),
                               content: Text(
                                 r"You will have save $"
-                                "$monthlySaving every month",
+                                "$monthSave every month",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 20),
                               ),
