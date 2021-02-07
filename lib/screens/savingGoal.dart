@@ -198,22 +198,34 @@ class _SavingGoalState extends State<SavingGoal> {
                     color: Colors.teal,
                     //Color.fromRGBO(28, 180, 174, 1),
                     onPressed: () {
-                      var target = double.parse(savingTarget.text);
+                      var target = int.parse(savingTarget.text);
 
                       var tme = int.parse(contrTime.text);
                       var rt = double.parse(contrRate.text);
-                      var nrt = (rt * 0.01) / 12;
-                      print(nrt);
-                      var topsolving =
-                          (nrt) * target * (1 + pow(nrt, tme * _value));
-                      print(topsolving);
+                      var nrt = (rt * 0.01);
+                      // print(nrt);
 
-                      var btmsolving = 1 + pow(nrt, tme * _value);
-                      print(btmsolving);
-                      var monthlySaving = topsolving / btmsolving;
-                      var monthSave = monthlySaving.toStringAsFixed(2);
+                      var a = target * (nrt / _value);
+                      print(a);
+                      // get the sum of the bottom value
+                      var d = (nrt / _value) + 1;
+                      print(d);
 
-                      print(monthlySaving);
+                      // var e = (d + 1);
+                      //get the power of the sum of the bottom value
+                      var f = pow(d, _value * tme);
+                      //get the subtraction between the power of the sum of the btm value.
+                      var g = f - 1;
+                      //divide the top and the bottom value
+                      var monthlySave = a / g;
+                      var SavePerMonth = monthlySave.toStringAsFixed(2);
+
+                      print(a / g);
+
+                      print(f);
+                      print(g);
+
+                      // print(monthlySaving);
 
                       return showDialog(
                         barrierDismissible: true,
@@ -226,10 +238,10 @@ class _SavingGoalState extends State<SavingGoal> {
                               elevation: 0.0,
                               contentTextStyle: TextStyle(color: Colors.white),
                               title: Text(r"To reach your saving target of $"
-                                  "$target,"),
+                                  "$target in $tme years:"),
                               content: Text(
-                                r"You will have save $"
-                                "$monthSave every month",
+                                r"You will have to save $"
+                                "$SavePerMonth every month",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 20),
                               ),
