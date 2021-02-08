@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(color: Colors.white),
         ),
       ),
-      initialRoute: "NavigationScreen",
+      initialRoute: "splashScreen",
       routes: {
         "splashScreen": (ctx) => SplashScreen(),
         "homeScreen": (ctx) => HomeScreen(),

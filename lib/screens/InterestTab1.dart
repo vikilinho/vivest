@@ -25,7 +25,7 @@ class _InterestPageTabState extends State<InterestPageTab>
       text: 'Simple Interest',
     ),
     Tab(
-      text: 'Compound Interest',
+      text: 'Compound \n   Interest',
     ),
     Tab(
       text: 'Saving Goal',

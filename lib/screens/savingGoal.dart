@@ -218,30 +218,32 @@ class _SavingGoalState extends State<SavingGoal> {
                       var g = f - 1;
                       //divide the top and the bottom value
                       var monthlySave = a / g;
+                      // ignore: non_constant_identifier_names
                       var SavePerMonth = monthlySave.toStringAsFixed(2);
-
-                      print(a / g);
-
-                      print(f);
-                      print(g);
-
-                      // print(monthlySaving);
+                      var SavePerYear = monthlySave * 12;
+                      var savper = SavePerYear.toStringAsFixed(2);
+                      var saveperday = SavePerYear / 365;
+                      var savday = saveperday.toStringAsFixed(2);
 
                       return showDialog(
                         barrierDismissible: true,
                         context: context,
                         builder: (context) {
                           return Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(8.0),
                             child: AlertDialog(
                               backgroundColor: Colors.black87,
                               elevation: 0.0,
                               contentTextStyle: TextStyle(color: Colors.white),
-                              title: Text(r"To reach your saving target of $"
-                                  "$target in $tme years:"),
+                              contentPadding: EdgeInsets.all(20),
+                              title: Text(
+                                r"To reach your saving target of $"
+                                "$target in $tme years:",
+                                textAlign: TextAlign.center,
+                              ),
                               content: Text(
-                                r"You will have to save $"
-                                "$SavePerMonth every month",
+                                r"You have to save $"
+                                "$SavePerMonth monthly, \$$savper yearly and \$$savday daily.",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 20),
                               ),

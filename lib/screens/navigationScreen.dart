@@ -50,7 +50,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
             BottomNavigationBarItem(
                 backgroundColor: Colors.orange,
                 icon: Icon(Icons.business),
-                label: "Market Updates"),
+                label: " Live Market"),
           ],
         ));
   }
