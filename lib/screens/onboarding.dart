@@ -15,9 +15,10 @@ class _OnboardScreenState extends State<OnboardScreen> {
     return [
       PageViewModel(
         decoration: PageDecoration(
+          imagePadding: EdgeInsets.all(20),
           titleTextStyle: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 50.0),
-          pageColor: Colors.teal,
+          pageColor: Colors.cyan[900],
         ),
         image: Padding(
           padding: EdgeInsets.only(top: 20, left: 20, right: 20),
@@ -25,7 +26,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
             image: AssetImage("images/liveMarket.png"),
           ),
         ),
-        title: "Live Market Updates",
+        title: "Stock Market Updates",
         bodyWidget: Icon(
           FontAwesomeIcons.chartBar,
           color: Colors.white,
@@ -36,13 +37,13 @@ class _OnboardScreenState extends State<OnboardScreen> {
         decoration: PageDecoration(
           titleTextStyle: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 50.0),
-          pageColor: Colors.teal,
+          pageColor: Colors.cyan[900],
         ),
         image: Padding(
           padding: EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Image(image: AssetImage("images/calculate.png")),
         ),
-        title: "Interest Calculator",
+        title: "Finanacial Calculators",
         bodyWidget: Icon(
           FontAwesomeIcons.calculator,
           color: Colors.white,
@@ -51,17 +52,20 @@ class _OnboardScreenState extends State<OnboardScreen> {
       ),
       PageViewModel(
         decoration: PageDecoration(
-          titleTextStyle: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 50.0),
-          pageColor: Colors.teal,
-        ),
+            titleTextStyle: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 50.0),
+            pageColor: Colors.cyan[900]),
         image: Padding(
-          padding: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Image(image: AssetImage("images/keepcharge.png")),
+          padding: EdgeInsets.only(top: 30, left: 25, right: 25),
+          child: Image(
+            image: AssetImage("images/finance.png"),
+          ),
         ),
-        title: "Track your Investment Portfolio",
+        title: "Financial Education",
         bodyWidget: Icon(
-          FontAwesomeIcons.shoppingBag,
+          FontAwesomeIcons.school,
           color: Colors.white,
           size: 50,
         ),
@@ -70,11 +74,11 @@ class _OnboardScreenState extends State<OnboardScreen> {
         decoration: PageDecoration(
           titleTextStyle: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 50.0),
-          pageColor: Colors.teal,
+          pageColor: Colors.cyan[900],
         ),
         image: Padding(
           padding: EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Image(image: AssetImage("images/latestnews.png")),
+          child: Image(image: AssetImage("images/reading.png")),
         ),
         title: "Latest Financial News",
         bodyWidget: Icon(
@@ -93,19 +97,18 @@ class _OnboardScreenState extends State<OnboardScreen> {
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: IntroductionScreen(
-            done: Text(
-              "Done",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20),
-            ),
-            pages: getPages(),
-            onDone: () {
-              Navigator.pushNamed(context, "NavigationScreen");
-            },
-            globalBackgroundColor: Colors.white,
-          ),
+              done: Text(
+                "Done",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              ),
+              pages: getPages(),
+              onDone: () {
+                Navigator.pushNamed(context, "NavigationScreen");
+              },
+              globalBackgroundColor: Colors.white10),
         ),
       ),
     );

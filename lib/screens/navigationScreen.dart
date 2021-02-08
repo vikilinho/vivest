@@ -42,7 +42,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
             BottomNavigationBarItem(
                 backgroundColor: Colors.red,
                 icon: Icon(Icons.calculate),
-                label: "Calculate"),
+                label: "Calculator"),
             BottomNavigationBarItem(
                 backgroundColor: Colors.blueGrey,
                 icon: Icon(Icons.read_more),
@@ -50,7 +50,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
             BottomNavigationBarItem(
                 backgroundColor: Colors.orange,
                 icon: Icon(Icons.business),
-                label: " Live Market"),
+                label: " Finance \n Education"),
           ],
         ));
   }
