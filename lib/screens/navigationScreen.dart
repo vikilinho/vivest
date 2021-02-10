@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:investo/screens/expenseTracker.dart';
 import 'package:investo/screens/financeNews.dart';
 import 'package:investo/screens/homeScreen.dart';
 import 'package:investo/screens/InterestTab1.dart';
-import 'package:investo/screens/liveMarket.dart';
 
 class NavigationScreen extends StatefulWidget {
   @override
@@ -26,10 +26,13 @@ class _NavigationScreenState extends State<NavigationScreen> {
             HomeScreen(),
             InterestPageTab(),
             FinanceNews(),
-            LiveMarket(),
+            ExpenseTracker(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
+          unselectedItemColor: Colors.black,
+          unselectedLabelStyle:
+              TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           type: BottomNavigationBarType.fixed,
           currentIndex: _currentIndex,
           onTap: (index) => currentIndex = index,
@@ -44,13 +47,11 @@ class _NavigationScreenState extends State<NavigationScreen> {
                 icon: Icon(Icons.calculate),
                 label: "Calculator"),
             BottomNavigationBarItem(
-                backgroundColor: Colors.blueGrey,
-                icon: Icon(Icons.read_more),
-                label: " Finance News"),
+                icon: Icon(Icons.read_more), label: " Finance News"),
             BottomNavigationBarItem(
-                backgroundColor: Colors.orange,
-                icon: Icon(Icons.business),
-                label: " Finance \n Education"),
+              icon: Icon(Icons.business),
+              label: " Expense \n  Tracker",
+            ),
           ],
         ));
   }

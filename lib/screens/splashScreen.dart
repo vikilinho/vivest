@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:investo/screens/onboarding.dart';
+import 'package:investo/screens/navigationScreen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -16,12 +16,12 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<Timer> loadData() async {
-    return Timer(Duration(seconds: 2), onDoneLoading);
+    return Timer(Duration(seconds: 5), onDoneLoading);
   }
 
   onDoneLoading() async {
     return Navigator.push(
-        context, MaterialPageRoute(builder: (context) => OnboardScreen()));
+        context, MaterialPageRoute(builder: (context) => NavigationScreen()));
   }
 
   @override

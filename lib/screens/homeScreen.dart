@@ -35,9 +35,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 30,
               ),
               Text(
-                " Here is an opportunity to improve your financial life.",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                " It's your Money \n        Manage it better.",
+                style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
               SizedBox(
                 height: 30,
@@ -47,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Text(
                   "Chains of habit are too light to be felt until they are too heavy to be broken - Warren Buffett",
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
               ),
             ],

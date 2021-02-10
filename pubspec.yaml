@@ -29,6 +29,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   introduction_screen: ^1.0.7
   webview_flutter: ^1.0.7
+  intl: ^0.16.1
   font_awesome_flutter: ^8.10.0
 
 dev_dependencies:
