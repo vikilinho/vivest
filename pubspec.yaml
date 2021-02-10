@@ -30,6 +30,7 @@ dependencies:
   introduction_screen: ^1.0.7
   webview_flutter: ^1.0.7
   intl: ^0.16.1
+  flutter_svg: ^0.18.0
   font_awesome_flutter: ^8.10.0
 
 dev_dependencies:
