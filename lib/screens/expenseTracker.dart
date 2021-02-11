@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:investo/screens/chart.dart';
 import 'package:investo/screens/new_transaction.dart';
 import 'package:investo/screens/transaction_list.dart';
 
@@ -24,6 +25,18 @@ class _ExpenseTrackerState extends State<ExpenseTracker> {
     setState(() {
       userTransactions.add(newTx);
     });
+  }
+
+  List<Transaction> get _recentTransactions {
+    return userTransactions.where((tx) {
+      return tx.date.isAfter(
+        DateTime.now().subtract(
+          Duration(
+            days: 7,
+          ),
+        ),
+      );
+    }).toList();
   }
 
   void _startNewTransaction(BuildContext ctx) {
@@ -55,14 +68,7 @@ class _ExpenseTrackerState extends State<ExpenseTracker> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Card(
-                elevation: 5,
-                color: Colors.teal,
-                child: Text(
-                  "Chart is here",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
+              Chart(_recentTransactions),
               TransactionList(transactions: userTransactions)
             ],
           ),
@@ -71,6 +77,7 @@ class _ExpenseTrackerState extends State<ExpenseTracker> {
       floatingActionButton: FloatingActionButton(
         tooltip: "Add Expense",
         backgroundColor: Colors.teal,
+        onPressed: () {},
         child: IconButton(
           icon: Icon(
             FontAwesomeIcons.plus,
