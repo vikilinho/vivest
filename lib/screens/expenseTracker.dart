@@ -16,12 +16,13 @@ class ExpenseTracker extends StatefulWidget {
 
 class _ExpenseTrackerState extends State<ExpenseTracker> {
   final List<Transaction> userTransactions = [];
-  void _addTransaction(String txTitle, double txAmount) {
+
+  void _addTransaction(String txTitle, double txAmount, DateTime choosenDate) {
     final newTx = Transaction(
         id: DateTime.now().toString(),
         title: txTitle,
         amount: txAmount,
-        date: DateTime.now());
+        date: choosenDate);
     setState(() {
       userTransactions.add(newTx);
     });
@@ -55,8 +56,11 @@ class _ExpenseTrackerState extends State<ExpenseTracker> {
     );
   }
 
-  String titleInput;
-  String amountInput;
+  void _deleteTransaction(String id) {
+    setState(() {
+      userTransactions.removeWhere((tx) => tx.id == id);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +73,10 @@ class _ExpenseTrackerState extends State<ExpenseTracker> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Chart(_recentTransactions),
-              TransactionList(transactions: userTransactions)
+              TransactionList(
+                transactions: userTransactions,
+                deleteTx: _deleteTransaction,
+              )
             ],
           ),
         ),
