@@ -7,7 +7,7 @@ import 'package:investo/transaction.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class TransactionList extends StatelessWidget {
-  final List<Transaction> transactions;
+  final List<Trans> transactions;
   final Function deleteTx;
 
   TransactionList({this.transactions, this.deleteTx});
@@ -15,7 +15,7 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250,
+      height: MediaQuery.of(context).size.height * 0.50,
       child: transactions.isEmpty
           ? Column(
               children: [

@@ -8,7 +8,7 @@ import 'package:investo/screens/onboarding.dart';
 
 import 'package:investo/screens/splashScreen.dart';
 
-void main() {
+void main() async {
   runApp(MyApp());
 }
 

@@ -15,10 +15,10 @@ class ExpenseTracker extends StatefulWidget {
 }
 
 class _ExpenseTrackerState extends State<ExpenseTracker> {
-  final List<Transaction> userTransactions = [];
+  final List<Trans> userTransactions = [];
 
   void _addTransaction(String txTitle, double txAmount, DateTime choosenDate) {
-    final newTx = Transaction(
+    final newTx = Trans(
         id: DateTime.now().toString(),
         title: txTitle,
         amount: txAmount,
@@ -28,7 +28,7 @@ class _ExpenseTrackerState extends State<ExpenseTracker> {
     });
   }
 
-  List<Transaction> get _recentTransactions {
+  List<Trans> get _recentTransactions {
     return userTransactions.where((tx) {
       return tx.date.isAfter(
         DateTime.now().subtract(

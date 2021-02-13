@@ -4,7 +4,7 @@ import 'package:investo/screens/chart_bar.dart';
 import 'package:investo/transaction.dart';
 
 class Chart extends StatelessWidget {
-  final List<Transaction> recentTransactions;
+  final List<Trans> recentTransactions;
 
   Chart(this.recentTransactions);
 
@@ -15,7 +15,7 @@ class Chart extends StatelessWidget {
       );
       var totalSum = 0.0;
 
-      for (Transaction tx in recentTransactions) {
+      for (Trans tx in recentTransactions) {
         if (tx.date.day == weekDay.day &&
             tx.date.month == weekDay.month &&
             tx.date.year == weekDay.year) {
