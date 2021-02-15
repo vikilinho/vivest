@@ -3,11 +3,11 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hive/hive.dart';
+import 'package:investo/model/trans.dart';
 import 'package:investo/screens/chart.dart';
 import 'package:investo/screens/new_transaction.dart';
 import 'package:investo/screens/transaction_list.dart';
-
-import 'package:investo/transaction.dart';
 
 class ExpenseTracker extends StatefulWidget {
   @override
@@ -15,6 +15,8 @@ class ExpenseTracker extends StatefulWidget {
 }
 
 class _ExpenseTrackerState extends State<ExpenseTracker> {
+  Box<dynamic> expenseBox;
+
   final List<Trans> userTransactions = [];
 
   void _addTransaction(String txTitle, double txAmount, DateTime choosenDate) {

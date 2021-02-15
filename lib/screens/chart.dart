@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:investo/model/trans.dart';
 import 'package:investo/screens/chart_bar.dart';
-import 'package:investo/transaction.dart';
 
 class Chart extends StatelessWidget {
   final List<Trans> recentTransactions;

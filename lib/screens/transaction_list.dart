@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:investo/transaction.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:investo/model/trans.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Trans> transactions;
