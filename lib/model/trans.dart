@@ -14,7 +14,7 @@ class Trans {
   final DateTime date;
 
   Trans(
-      {@required this.id,
+      {this.id,
       @required this.title,
       @required this.amount,
       @required this.date});

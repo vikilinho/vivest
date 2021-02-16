@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:investo/model/trans.dart';
 
 import 'package:investo/screens/homeScreen.dart';
 import 'package:investo/screens/navigationScreen.dart';
@@ -15,7 +16,8 @@ void main() async {
   Directory document =
       await getApplicationDocumentsDirectory(); //getting the path
   Hive.init(document.path); //initialising the hive database
-  await Hive.openBox<dynamic>("Expense"); //opening of the box
+  Hive.registerAdapter(TransAdapter());
+  await Hive.openBox<Trans>("ExpenseBox"); //opening of the box
 
   runApp(MyApp());
 }

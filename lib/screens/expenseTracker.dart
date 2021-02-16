@@ -15,7 +15,7 @@ class ExpenseTracker extends StatefulWidget {
 }
 
 class _ExpenseTrackerState extends State<ExpenseTracker> {
-  Box<dynamic> expenseBox;
+  Box<Trans> expenseBox; // making a reference of the box
 
   final List<Trans> userTransactions = [];
 

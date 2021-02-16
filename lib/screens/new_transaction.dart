@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
+import 'package:investo/model/trans.dart';
 
 class NewTransaction extends StatefulWidget {
+  // making a reference of the box
   final Function addTx;
 
   NewTransaction({this.addTx});
@@ -11,10 +14,23 @@ class NewTransaction extends StatefulWidget {
 }
 
 class _NewTransactionState extends State<NewTransaction> {
+  Box<Trans> expenseBox;
   final TextEditingController _controller = TextEditingController();
 
   final TextEditingController _cntroller = TextEditingController();
   DateTime _selectedDate;
+
+  void _sendToHive() {
+    final enteredTitle = _controller.text;
+    final enteredAmount = double.parse(_cntroller.text);
+    Trans trans =
+        Trans(title: enteredTitle, amount: enteredAmount, date: _selectedDate);
+    expenseBox.add(trans);
+    print(expenseBox.add(trans));
+    print("I am here");
+    widget.addTx(enteredTitle, enteredAmount, _selectedDate);
+    Navigator.of(context).pop();
+  }
 
   void _submitData() {
     if (_selectedDate == null) {
@@ -42,6 +58,12 @@ class _NewTransactionState extends State<NewTransaction> {
         _selectedDate = pickedDate;
       });
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    expenseBox = Hive.box<Trans>("ExpenseBox");
   }
 
   @override
@@ -148,7 +170,7 @@ class _NewTransactionState extends State<NewTransaction> {
                   ),
                   color: Colors.teal,
                   //Color.fromRGBO(28, 180, 174, 1),
-                  onPressed: _submitData),
+                  onPressed: _sendToHive),
             ),
           ),
         ],
