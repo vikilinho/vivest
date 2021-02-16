@@ -14,19 +14,20 @@ class NewTransaction extends StatefulWidget {
 }
 
 class _NewTransactionState extends State<NewTransaction> {
-  Box<Trans> expenseBox;
   final TextEditingController _controller = TextEditingController();
 
   final TextEditingController _cntroller = TextEditingController();
   DateTime _selectedDate;
 
   void _sendToHive() {
+    final expenseBox = Hive.box("ExpenseBox");
     final enteredTitle = _controller.text;
     final enteredAmount = double.parse(_cntroller.text);
     Trans trans =
         Trans(title: enteredTitle, amount: enteredAmount, date: _selectedDate);
     expenseBox.add(trans);
     print(expenseBox.add(trans));
+
     print("I am here");
     widget.addTx(enteredTitle, enteredAmount, _selectedDate);
     Navigator.of(context).pop();
