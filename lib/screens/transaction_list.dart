@@ -4,8 +4,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
-
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:investo/main.dart';
 import 'package:investo/model/trans.dart';
 
 class TransactionList extends StatefulWidget {
@@ -19,15 +20,12 @@ class TransactionList extends StatefulWidget {
 }
 
 class _TransactionListState extends State<TransactionList> {
-
-  Box<Trans> expenseBox;
+  Box<Trans> transactionBox;
 
   @override
   void initState() {
-
+    transactionBox = Hive.box<Trans>(TransactionBoxName);
     super.initState();
-    expenseBox = Hive.box<Trans>('ExpenseBox');
-
   }
 
   @override
@@ -54,55 +52,55 @@ class _TransactionListState extends State<TransactionList> {
               ],
             )
           : ValueListenableBuilder(
-        valueListenable: expenseBox.listenable();
-              child: ListView.builder(
-                itemBuilder: (ctx, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Card(
-                      elevation: 5,
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.teal,
-                          radius: 30,
-                          child: Padding(
-                            padding: EdgeInsets.all(10),
-                            child: FittedBox(
-                              child: Text(
-                                '\$${transactions[index].amount.toStringAsFixed(0)}',
-                                style: TextStyle(
-                                    fontSize: 30,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
+              valueListenable: transactionBox.listenable(),
+              builder: (context, Box<Trans> trans, _) {
+                return ListView.builder(
+                  itemBuilder: (ctx, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Card(
+                        elevation: 5,
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.teal,
+                            radius: 30,
+                            child: Padding(
+                              padding: EdgeInsets.all(10),
+                              child: FittedBox(
+                                child: Text(
+                                  '\$${widget.transactions[index].amount.toStringAsFixed(0)}',
+                                  style: TextStyle(
+                                      fontSize: 30,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        title: Text(
-                          transactions[index].title,
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
-                        ),
-                        subtitle: Text(
-                          DateFormat.yMMMd().format(transactions[index].date),
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.black),
-                        ),
-                        trailing: IconButton(
-                          icon: Icon(FontAwesomeIcons.trash, color: Colors.red),
-                          onPressed: () => deleteTx(transactions[index].id),
+                          title: Text(
+                            widget.transactions[index].title,
+                            style: Theme.of(context).textTheme.headline5,
+                          ),
+                          subtitle: Text(
+                            DateFormat.yMMMd()
+                                .format(widget.transactions[index].date),
+                            style: Theme.of(context).textTheme.bodyText2,
+                          ),
+                          trailing: IconButton(
+                            icon:
+                                Icon(FontAwesomeIcons.trash, color: Colors.red),
+                            onPressed: () =>
+                                widget.deleteTx(widget.transactions[index].id),
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                },
-                itemCount: transactions.length,
-              ),
-            ),
+                    );
+                  },
+                  itemCount: widget.transactions.length,
+                );
+              }),
     );
   }
 }

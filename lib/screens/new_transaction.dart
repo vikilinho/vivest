@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
+import 'package:investo/main.dart';
 import 'package:investo/model/trans.dart';
 
 class NewTransaction extends StatefulWidget {
@@ -18,15 +19,16 @@ class _NewTransactionState extends State<NewTransaction> {
 
   final TextEditingController _cntroller = TextEditingController();
   DateTime _selectedDate;
+  Box<Trans> transactionBox;
 
   void _sendToHive() {
-    final expenseBox = Hive.box("ExpenseBox");
+    final transactionBox = Hive.box("ExpenseBox");
     final enteredTitle = _controller.text;
     final enteredAmount = double.parse(_cntroller.text);
     Trans trans =
         Trans(title: enteredTitle, amount: enteredAmount, date: _selectedDate);
-    expenseBox.add(trans);
-    print(expenseBox.add(trans));
+    transactionBox.add(trans);
+    print(transactionBox.add(trans));
 
     print("I am here");
     widget.addTx(enteredTitle, enteredAmount, _selectedDate);
@@ -63,8 +65,8 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   void initState() {
+    transactionBox = Hive.box<Trans>(TransactionBoxName);
     super.initState();
-    expenseBox = Hive.box<Trans>("ExpenseBox");
   }
 
   @override

@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+bool _light = true;
+
 class HomeScreen extends StatefulWidget {
+  final bool _light = true;
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -16,8 +19,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Color(0xff1F2428),
       appBar: AppBar(
-        leading: Icon(FontAwesomeIcons.home),
-        title: Text("Home"),
+        leading: Switch(
+            value: _light,
+            onChanged: (toggle) {
+              setState(() {
+                _light = toggle;
+              });
+            }),
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         centerTitle: true,

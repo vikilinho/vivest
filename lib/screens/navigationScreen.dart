@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:investo/main.dart';
 import 'package:investo/screens/expenseTracker.dart';
 import 'package:investo/screens/financeNews.dart';
 import 'package:investo/screens/homeScreen.dart';
@@ -30,7 +31,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
-          unselectedItemColor: Colors.black,
+          unselectedItemColor: Theme.of(context).unselectedWidgetColor,
+          selectedItemColor: Theme.of(context).selectedRowColor,
           unselectedLabelStyle:
               TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           type: BottomNavigationBarType.fixed,
@@ -38,14 +40,11 @@ class _NavigationScreenState extends State<NavigationScreen> {
           onTap: (index) => currentIndex = index,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              backgroundColor: Colors.green,
               icon: Icon(Icons.home),
               label: "Home",
             ),
             BottomNavigationBarItem(
-                backgroundColor: Colors.red,
-                icon: Icon(Icons.calculate),
-                label: "Calculator"),
+                icon: Icon(Icons.calculate), label: "Calculator"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.read_more), label: " Finance News"),
             BottomNavigationBarItem(
