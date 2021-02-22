@@ -6,17 +6,17 @@ part of 'trans.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class TransAdapter extends TypeAdapter<Trans> {
+class TransAdapter extends TypeAdapter<Expense> {
   @override
   final int typeId = 0;
 
   @override
-  Trans read(BinaryReader reader) {
+  Expense read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Trans(
+    return Expense(
       id: fields[0] as String,
       title: fields[1] as String,
       amount: fields[2] as double,
@@ -25,7 +25,7 @@ class TransAdapter extends TypeAdapter<Trans> {
   }
 
   @override
-  void write(BinaryWriter writer, Trans obj) {
+  void write(BinaryWriter writer, Expense obj) {
     writer
       ..writeByte(4)
       ..writeByte(0)

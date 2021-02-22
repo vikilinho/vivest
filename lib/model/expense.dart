@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 part 'trans.g.dart';
 
 @HiveType(typeId: 0)
-class Trans {
+class Expense {
   @HiveField(0)
   final String id;
   @HiveField(1)
@@ -13,7 +13,7 @@ class Trans {
   @HiveField(3)
   final DateTime date;
 
-  Trans(
+  Expense(
       {this.id,
       @required this.title,
       @required this.amount,
