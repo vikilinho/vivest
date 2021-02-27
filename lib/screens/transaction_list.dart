@@ -6,11 +6,13 @@ import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:investo/main.dart';
-import 'package:investo/model/trans.dart';
+
+import 'package:investo/model/expense.dart';
+
+const String ExpenseBoxName = "expense";
 
 class TransactionList extends StatefulWidget {
-  final List<Trans> transactions;
+  final List<ExpenseModel> transactions;
   final Function deleteTx;
 
   TransactionList({this.transactions, this.deleteTx});
@@ -20,11 +22,11 @@ class TransactionList extends StatefulWidget {
 }
 
 class _TransactionListState extends State<TransactionList> {
-  Box<Trans> transactionBox;
+  Box<ExpenseModel> transBox;
 
   @override
   void initState() {
-    transactionBox = Hive.box<Trans>(TransactionBoxName);
+    transBox = Hive.box<ExpenseModel>(ExpenseBoxName);
     super.initState();
   }
 
@@ -52,10 +54,20 @@ class _TransactionListState extends State<TransactionList> {
               ],
             )
           : ValueListenableBuilder(
-              valueListenable: transactionBox.listenable(),
-              builder: (context, Box<Trans> trans, _) {
-                return ListView.builder(
+              valueListenable: transBox.listenable(),
+              builder: (context, Box<ExpenseModel> items, _) {
+                List<int> keys;
+                keys = items.keys.cast<int>().toList();
+                return ListView.separated(
+                  separatorBuilder: (_, index) => Divider(),
+                  itemCount: keys.length,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (ctx, index) {
+                    final int key = keys[index];
+                    final ExpenseModel data = items.get(key);
+
                     return Padding(
                       padding: const EdgeInsets.all(10),
                       child: Card(
@@ -70,7 +82,7 @@ class _TransactionListState extends State<TransactionList> {
                               padding: EdgeInsets.all(10),
                               child: FittedBox(
                                 child: Text(
-                                  '\$${widget.transactions[index].amount.toStringAsFixed(0)}',
+                                  '\$${data.amount.toStringAsFixed(0)}',
                                   style: TextStyle(
                                       fontSize: 30,
                                       color: Colors.white,
@@ -80,12 +92,11 @@ class _TransactionListState extends State<TransactionList> {
                             ),
                           ),
                           title: Text(
-                            widget.transactions[index].title,
+                            data.title,
                             style: Theme.of(context).textTheme.headline5,
                           ),
                           subtitle: Text(
-                            DateFormat.yMMMd()
-                                .format(widget.transactions[index].date),
+                            DateFormat.yMMMd().format(data.date),
                             style: Theme.of(context).textTheme.bodyText2,
                           ),
                           trailing: IconButton(
@@ -98,7 +109,6 @@ class _TransactionListState extends State<TransactionList> {
                       ),
                     );
                   },
-                  itemCount: widget.transactions.length,
                 );
               }),
     );

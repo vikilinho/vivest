@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:investo/model/trans.dart';
+import 'package:investo/model/expense.dart';
+
 import 'package:investo/screens/chart_bar.dart';
 
 class Chart extends StatelessWidget {
-  final List<Trans> recentTransactions;
+  final List<ExpenseModel> recentTransactions;
 
   Chart(this.recentTransactions);
 
@@ -15,7 +16,7 @@ class Chart extends StatelessWidget {
       );
       var totalSum = 0.0;
 
-      for (Trans tx in recentTransactions) {
+      for (ExpenseModel tx in recentTransactions) {
         if (tx.date.day == weekDay.day &&
             tx.date.month == weekDay.month &&
             tx.date.year == weekDay.year) {

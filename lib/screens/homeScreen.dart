@@ -4,11 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-bool _light = true;
+import 'package:investo/constants/themeController.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
-  final bool _light = true;
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -20,11 +19,11 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Color(0xff1F2428),
       appBar: AppBar(
         leading: Switch(
-            value: _light,
-            onChanged: (toggle) {
-              setState(() {
-                _light = toggle;
-              });
+            value:
+                Provider.of<ThemeController>(context, listen: false).isDarkMode,
+            onChanged: (boolVal) {
+              Provider.of<ThemeController>(context, listen: false)
+                  .updateTheme(boolVal);
             }),
         elevation: 0.0,
         backgroundColor: Colors.transparent,

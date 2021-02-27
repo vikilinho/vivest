@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:investo/main.dart';
+
 import 'package:investo/screens/expenseTracker.dart';
 import 'package:investo/screens/financeNews.dart';
 import 'package:investo/screens/homeScreen.dart';
@@ -31,6 +31,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Theme.of(context).bottomAppBarColor,
           unselectedItemColor: Theme.of(context).unselectedWidgetColor,
           selectedItemColor: Theme.of(context).selectedRowColor,
           unselectedLabelStyle:

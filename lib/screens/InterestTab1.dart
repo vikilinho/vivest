@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:investo/screens/cmpd.dart';
 
 import 'package:investo/screens/SimpleInterest.dart';
@@ -45,12 +46,21 @@ class _InterestPageTabState extends State<InterestPageTab>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            FontAwesomeIcons.arrowLeft,
+            color: Theme.of(context).buttonColor,
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, "NavigationScreen");
+          },
+        ),
         elevation: 0,
-        backgroundColor: Colors.teal,
+        backgroundColor: Theme.of(context).bottomAppBarColor,
         bottom: TabBar(
           labelStyle: TextStyle(fontWeight: FontWeight.bold),
-          unselectedLabelColor: Colors.black,
-          labelColor: Colors.white,
+          unselectedLabelColor: Theme.of(context).unselectedWidgetColor,
+          labelColor: Theme.of(context).selectedRowColor,
           labelPadding: EdgeInsets.all(8.0),
           indicatorColor: Colors.white,
           onTap: (index) => currentIndex = index,

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class FinanceNews extends StatefulWidget {
@@ -23,6 +24,15 @@ class _FinanceNewsState extends State<FinanceNews> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(
+              FontAwesomeIcons.arrowLeft,
+              color: Theme.of(context).buttonColor,
+            ),
+            onPressed: () {
+              Navigator.pushNamed(context, "NavigationScreen");
+            },
+          ),
           title: Text(" Finance News "),
           centerTitle: true,
         ),

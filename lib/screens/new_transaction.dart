@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
-import 'package:investo/main.dart';
-import 'package:investo/model/trans.dart';
+
+import 'package:investo/model/expense.dart';
+
+const String ExpenseBoxName = "expense";
 
 class NewTransaction extends StatefulWidget {
   // making a reference of the box
@@ -19,21 +21,21 @@ class _NewTransactionState extends State<NewTransaction> {
 
   final TextEditingController _cntroller = TextEditingController();
   DateTime _selectedDate;
-  Box<Trans> transactionBox;
+  Box<ExpenseModel> transactionBox;
 
-  void _sendToHive() {
-    final transactionBox = Hive.box("ExpenseBox");
-    final enteredTitle = _controller.text;
-    final enteredAmount = double.parse(_cntroller.text);
-    Trans trans =
-        Trans(title: enteredTitle, amount: enteredAmount, date: _selectedDate);
-    transactionBox.add(trans);
-    print(transactionBox.add(trans));
-
-    print("I am here");
-    widget.addTx(enteredTitle, enteredAmount, _selectedDate);
-    Navigator.of(context).pop();
-  }
+  // void _sendToHive() {
+  //   final transactionBox = Hive.box("ExpenseBox");
+  //   final enteredTitle = _controller.text;
+  //   final enteredAmount = double.parse(_cntroller.text);
+  //   Trans trans =
+  //       Trans(title: enteredTitle, amount: enteredAmount, date: _selectedDate);
+  //   transactionBox.add(trans);
+  //   print(transactionBox.add(trans));
+  //
+  //   print("I am here");
+  //   widget.addTx(enteredTitle, enteredAmount, _selectedDate);
+  //   Navigator.of(context).pop();
+  // }
 
   void _submitData() {
     if (_selectedDate == null) {
@@ -65,7 +67,7 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   void initState() {
-    transactionBox = Hive.box<Trans>(TransactionBoxName);
+    transactionBox = Hive.box<ExpenseModel>(ExpenseBoxName);
     super.initState();
   }
 
@@ -173,7 +175,17 @@ class _NewTransactionState extends State<NewTransaction> {
                   ),
                   color: Colors.teal,
                   //Color.fromRGBO(28, 180, 174, 1),
-                  onPressed: _sendToHive),
+                  onPressed: () {
+                    final title = _controller.text;
+                    final enteredAmount = double.parse(_cntroller.text);
+                    ExpenseModel data = ExpenseModel(
+                        amount: enteredAmount,
+                        title: title,
+                        date: _selectedDate);
+                    transactionBox.add(data);
+                    widget.addTx(title, enteredAmount, _selectedDate);
+                    Navigator.of(context).pop();
+                  }),
             ),
           ),
         ],

@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hive/hive.dart';
-import 'package:investo/model/trans.dart';
+import 'package:investo/model/expense.dart';
+
 import 'package:investo/screens/chart.dart';
 import 'package:investo/screens/new_transaction.dart';
 import 'package:investo/screens/transaction_list.dart';
@@ -15,12 +15,10 @@ class ExpenseTracker extends StatefulWidget {
 }
 
 class _ExpenseTrackerState extends State<ExpenseTracker> {
-  Box<Trans> expenseBox; // making a reference of the box
-
-  final List<Trans> userTransactions = [];
+  final List<ExpenseModel> userTransactions = [];
 
   void _addTransaction(String txTitle, double txAmount, DateTime choosenDate) {
-    final newTx = Trans(
+    final newTx = ExpenseModel(
         id: DateTime.now().toString(),
         title: txTitle,
         amount: txAmount,
@@ -30,7 +28,7 @@ class _ExpenseTrackerState extends State<ExpenseTracker> {
     });
   }
 
-  List<Trans> get _recentTransactions {
+  List<ExpenseModel> get _recentTransactions {
     return userTransactions.where((tx) {
       return tx.date.isAfter(
         DateTime.now().subtract(
@@ -68,10 +66,11 @@ class _ExpenseTrackerState extends State<ExpenseTracker> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).bottomAppBarColor,
         leading: IconButton(
           icon: Icon(
             FontAwesomeIcons.arrowLeft,
-            color: Colors.white,
+            color: Theme.of(context).buttonColor,
           ),
           onPressed: () {
             Navigator.pushNamed(context, "NavigationScreen");
@@ -79,17 +78,19 @@ class _ExpenseTrackerState extends State<ExpenseTracker> {
         ),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Chart(_recentTransactions),
-              TransactionList(
-                transactions: userTransactions,
-                deleteTx: _deleteTransaction,
-              )
-            ],
+        child: Container(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Chart(_recentTransactions),
+                TransactionList(
+                  transactions: userTransactions,
+                  deleteTx: _deleteTransaction,
+                )
+              ],
+            ),
           ),
         ),
       ),

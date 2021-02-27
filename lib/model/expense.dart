@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-part 'trans.g.dart';
+part 'expense.g.dart';
 
 @HiveType(typeId: 0)
-class Expense {
+class ExpenseModel {
   @HiveField(0)
   final String id;
   @HiveField(1)
@@ -13,7 +13,7 @@ class Expense {
   @HiveField(3)
   final DateTime date;
 
-  Expense(
+  ExpenseModel(
       {this.id,
       @required this.title,
       @required this.amount,
