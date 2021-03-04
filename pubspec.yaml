@@ -30,15 +30,15 @@ dependencies:
 
   webview_flutter: ^1.0.7
   intl: ^0.16.1
-  flutter_svg: ^0.18.0
+  flutter_svg: ^0.19.3
   hive: ^1.4.4+1
   hive_flutter: ^0.3.1
 
   path_provider: ^1.6.27
-  font_awesome_flutter: ^8.10.0
+  font_awesome_flutter: ^8.11.0
+  get: ^3.25.6
 
   provider: ^4.3.3
-
 
 dev_dependencies:
   flutter_test:
@@ -50,7 +50,6 @@ flutter_icons:
   android: "launcher_icon"
   ios: true
   image_path: "images/MoniMata.png"
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

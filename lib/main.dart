@@ -19,9 +19,9 @@ const String ExpenseBoxName = "expense";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final document = await getApplicationDocumentsDirectory();
-  Hive.init(document.path);
-  Hive.openBox<ExpenseModel>(ExpenseBoxName);
   Hive.registerAdapter(ExpenseModelAdapter());
+  await Hive.openBox<ExpenseModel>(ExpenseBoxName);
+  Hive.init(document.path);
 
   runApp(
     ChangeNotifierProvider(
@@ -34,6 +34,7 @@ void main() async {
 // ChangeNotifierProvider(
 // ,
 
+// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
   ThemeData _darkTheme = ThemeData(
     buttonColor: Colors.white,
