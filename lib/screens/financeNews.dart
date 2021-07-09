@@ -37,7 +37,8 @@ class _FinanceNewsState extends State<FinanceNews> {
           centerTitle: true,
         ),
         body: WebView(
-          initialUrl: "https://finance.yahoo.com/",
+          initialUrl:
+              "https://finance.yahoo.com/", //I need to change this call to Api
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController webViewController) {
             _controller.complete(webViewController);

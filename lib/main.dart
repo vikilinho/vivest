@@ -19,10 +19,6 @@ const String ExpenseBoxName = "expense";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final document = await getApplicationDocumentsDirectory();
-  Hive.registerAdapter(ExpenseModelAdapter());
-  await Hive.openBox<ExpenseModel>(ExpenseBoxName);
-  Hive.init(document.path);
-
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeController(),
